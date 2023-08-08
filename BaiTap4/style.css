@@ -1,0 +1,304 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  font-size: 14px;
+  font-family: "Roboto", sans-serif;
+}
+
+/* header */
+
+.header {
+  /* padding: 0 ; */
+  display: flex;
+  padding: 10px 50px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #7a7980;
+  margin-bottom: 20px;
+}
+
+.fa-bars {
+  color: white;
+  cursor: pointer;
+}
+
+i {
+  font-size: 24px;
+  color: #dad9dd;
+  cursor: pointer;
+}
+
+.header .header_icon {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.header .header_text span {
+  text-align: center;
+  text-transform: uppercase;
+  color: white;
+  /* padding-bottom: 10px; */
+}
+.header .header_text p {
+  margin-top: 5px;
+  color: #dad9dd;
+  text-align: center;
+}
+.header .header_text2 span {
+  font-size: 12px;
+  text-transform: uppercase;
+  color: white;
+  /* padding-bottom: 10px; */
+}
+.header .header_text2 p {
+  margin-top: 5px;
+  font-size: 12px;
+  color: #dad9dd;
+}
+
+/* main */
+
+.fa-house {
+  color: #88b9eb;
+  font-size: 14px;
+}
+
+.main .main_nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 0 50px;
+  margin-bottom: 20px;
+}
+
+.main .main_btn {
+  padding: 0 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main_btn {
+  margin-bottom: 30px;
+}
+
+.main_btnSum {
+  display: flex;
+  text-transform: uppercase;
+  align-items: center;
+  border: none;
+  gap: 10px;
+}
+.main_btnAddnew {
+  display: flex;
+  text-transform: uppercase;
+  align-items: center;
+  border: none;
+  gap: 20px;
+  padding: 7px;
+  cursor: pointer;
+  background-color: #88b9eb;
+}
+
+.main_btnExp {
+  display: flex;
+  text-transform: uppercase;
+  align-items: center;
+  border: none;
+  gap: 20px;
+  padding: 7px;
+  cursor: pointer;
+}
+
+.main_btn i {
+  font-size: 14px;
+  color: black;
+}
+
+.main_search button {
+  padding: 7px 15px;
+  border: none;
+  /* border-color: #7a7980; */
+  /* border: 1px solid #7a7980; */
+  /* border: 1px;4 */
+}
+.main_search input {
+  padding: 6px;
+  width: 200px;
+  border: none;
+  /* border-color: #7a7980; */
+  border: 1px solid #98979c;
+  padding-left: 10px;
+}
+
+.fa-chevron {
+  margin-right: -2.7px;
+  cursor: pointer;
+}
+
+.fa-magnifying {
+  margin-left: -3.5px;
+  cursor: pointer;
+}
+
+.main_Slt {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.main_Slt select {
+  padding: 5px 20px;
+}
+.main_Slt option {
+  padding: 7px 20px;
+}
+
+/* Table styles */
+.main_table {
+  padding: 0 80px;
+  margin-bottom: 50px;
+}
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  /* height: 300px; */
+  overflow-y: auto;
+}
+
+thead {
+  background-color: black;
+  color: white;
+}
+
+th,
+td {
+  border: 1px solid #7a7980;
+  border-left: none;
+  border-right: none;
+  padding: 8px;
+  text-align: center;
+}
+
+tr td i {
+  color: black;
+  font-size: 14px;
+}
+
+.fa-eye {
+  cursor: pointer;
+  background-color: #88b9eb;
+  padding: 7px;
+  margin-right: -3.5px;
+}
+.fa-pen-to-square {
+  cursor: pointer;
+  background-color: #ffd47d;
+  padding: 7px;
+}
+.fa-circle-xmark {
+  cursor: pointer;
+  background-color: #f48b8e;
+  padding: 7px;
+  margin-left: -3.5px;
+}
+
+/* Main Page Styles */
+
+.main_page {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 100px;
+}
+
+.main_page .page {
+  display: flex;
+  align-items: center;
+  /* gap: 10px; */
+}
+.main_page .page button {
+  border: none;
+  background: none;
+  padding: 5px 10px;
+}
+.main_page .page button span {
+  padding: 7px 12px;
+  background-color: #88b9eb;
+  border-radius: 4px;
+  color: white;
+}
+.main_page .page button i {
+  font-size: 14px;
+  color: black;
+}
+
+/* Addnew */
+
+.main_Addnew {
+  padding: 0 80px;
+  margin-bottom: 30px;
+}
+
+.main_Addnew form {
+  background-color: #ffffff;
+  box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+  border-radius: 8px;
+  border: 2px solid #88b9eb;
+  width: 30%;
+  padding: 20px;
+}
+
+.input_Address,
+.input_City,
+.input_Postal {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 10px;
+}
+.input_Address,
+.input_City,
+.input_Postal label {
+  text-transform: uppercase;
+  font-size: 18px;
+}
+.input_Address input,
+.input_City input,
+.input_Postal input {
+  border: none;
+  width: 100%;
+  padding: 8px;
+  border: 2px solid #88b9eb;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.main_Addnew form button {
+  padding: 10px 30px;
+  border: none;
+  background-color: #88b9eb;
+  text-transform: uppercase;
+  color: #ffffff;
+  font-weight: 700;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+.main_Addnew form button:hover {
+  background-color: #7a7980;
+}
+
+.hide {
+  display: none;
+}
