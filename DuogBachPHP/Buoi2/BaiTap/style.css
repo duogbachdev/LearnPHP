@@ -1,0 +1,29 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  padding: 20px 100px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.featured {
+  background-color: aqua;
+}
+
+.main_products {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+.main_products h4 {
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.main_products img {
+  width: 300px;
+}
