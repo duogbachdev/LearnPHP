@@ -32,6 +32,8 @@ Route::get('/', function () {
 // Cú pháp gọi controller vào route
 Route::get('/test2/{a}/{b}', [TestController::class, "test2"]);
 Route::get('/test', [TestController::class, "test"]);
+Route::get('/test1', [TestController::class, "test1"]);
+Route::post('/test', [TestController::class, "testForm"]);
 
 Route::get('/form', function () {
     return "
@@ -47,13 +49,11 @@ Route::post('/form', function () {
 });
 
 // Admin Router
-Route::get('/login', [AuthController::class, "getLogin"]);
-Route::post('/login', [AuthController::class, "postLogin"]);
+Route::get('/login', [AuthController::class, "getLogin"])->middleware("checklogin");
+Route::post('/login', [AuthController::class, "postLogin"])->middleware("checklogin");
 
-Route::group(['prefix' => '/admin'], function () {
-    Route::get('/logout', function () {
-        return 'logout';
-    });
+Route::group(['prefix' => '/admin', "middleware" => "checkadmin"], function () {
+    Route::get('/logout', [AdminController::class,"logout"]);
     Route::get('/', [AdminController::class, "index"]);
     Route::group(['prefix' => '/product'], function () {
         Route::get('/', [ProductController::class, "index"]);

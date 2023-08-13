@@ -7,3 +7,7 @@ php artisan serve
 
 Create Controller :
 php artisan make:controller "Name_Controller"
+
+Create Middleware : 
+php artisan make:middleware TestMiddleware
+
