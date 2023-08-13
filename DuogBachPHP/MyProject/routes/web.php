@@ -2,7 +2,10 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Auth\AuthController;
+use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\Order\OrderController;
 use App\Http\Controllers\Admin\Product\ProductController;
+use App\Http\Controllers\Admin\User\UserController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
@@ -61,5 +64,31 @@ Route::group(['prefix' => '/admin'], function () {
         Route::get('/delete', function () {
             return 'delete';
         });
+    });
+    Route::group(['prefix' => '/category'], function () {
+        Route::get('/', [CategoryController::class, "index"]);
+        Route::get('/create', [CategoryController::class, "create"]);
+        Route::post('/store', [CategoryController::class, "store"]);
+        Route::get('/edit', [CategoryController::class, "edit"]);
+        Route::post('/update', [CategoryController::class, "update"]);
+        Route::get('/delete', function () {
+            return 'delete';
+        });
+    });
+    Route::group(['prefix' => '/user'], function () {
+        Route::get('/', [UserController::class, "index"]);
+        Route::get('/create', [UserController::class, "create"]);
+        Route::post('/store', [UserController::class, "store"]);
+        Route::get('/edit', [UserController::class, "edit"]);
+        Route::post('/update', [UserController::class, "update"]);
+        Route::get('/delete', function () {
+            return 'delete';
+        });
+    });
+    Route::group(['prefix' => '/order'], function () {
+        Route::get('/', [OrderController::class, "index"]);
+        Route::get('/detail', [OrderController::class, "detail"]);
+        Route::post('/store', [OrderController::class, "store"]);
+        Route::get('/processed', [OrderController::class, "processed"]);
     });
 });
