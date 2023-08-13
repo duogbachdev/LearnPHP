@@ -1,0 +1,9 @@
+Cài đặt project : 
+composer create-project --prefer-dist laravel/laravel MyProject
+
+Run project : 
+cd MyProject
+php artisan serve
+
+Create Controller :
+php artisan make:controller "Name_Controller"
