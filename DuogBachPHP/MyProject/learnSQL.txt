@@ -1,0 +1,36 @@
+Kiểu dữ liệu : 
+
+char    : admin -> 5 ký tự + 200 ký tự rỗng
+varchar : amdin -> 5 ký tự
+text
+Longtext
+Int 
+Float
+Double
+Date
+Date Time
+
+Thuộc tính cơ bản trong CSDL : 
+
+null và not null
+unsigned
+auto_increment
+primary key
+
+Câu lệnh : 
+
+INSERT INTO TEN_BANG(COT_TRONGBANG,...)
+VALUES (GIA_TRI TUONG UNG VOI CAC COT_TRONGBANG);
+
+UPDATE TEN_BANG
+SET TEN_COT = GIA_TRI MOI, ...
+WHERE TEN_COT = GIA_TRI
+
+SELECT * FROM TEN_BANG
+SELECT TEN_COT,... FROM TEN_BANG
+
+DELETE FORM TEN_BANG
+WHERE TEN_COT = GIA_TRI
+
+Từ khóa : 
+WHERE, AND, OR, ORDER BY (ASC, DESC, RAND()), LIMIT lay_tuDau...bao_Nhieu, 
