@@ -11,3 +11,62 @@ php artisan make:controller "Name_Controller"
 Create Middleware : 
 php artisan make:middleware TestMiddleware
 
+Create migrations
+php artisan make:migration create_users_table
+https://laravel.com/docs/10.x/migrations
+    $table->id();
+    $table->string("fullname", 255);
+    $table->string("email", 255)->unique();  //không được phép trùng email, có thể là khóa phụ
+    $table->string("password", 255);
+    $table->string("phone", 255)->nullable(); //có thể bỏ trống không nhập dữ liệu 
+    $table->string("address", 255)->nullable();
+    $table->tinyInteger("level")->unsigned(); // là số dương không âm
+    $table->timestamps();
+
+    // Tạo cấu trúc liên kết bảng
+            $table->foreign("categories_id")
+                ->references("id")
+                ->on("categories")
+                ->onDelete("cascade");
+Chạy run table : php artisan migrate
+
+// Chạy câu lệnh truy vấn :
+
+        // Thêm
+        // DB::table("categories")->insert([
+        //     "name" => "Nokia",
+        //     "slug" => "nokia",
+        //     "parent" => "1"
+        // ]);
+
+        // DB::table("categories")->insert([
+        //     ["name" => "Sansung", "slug"=>"samsung", "parent" => "2"],
+        //     ["name" => "Bphone", "slug"=>"bphone", "parent" => "1"],
+        // ]);
+
+        // Lấy ra sản phẩm
+        // $products = DB::table("products")->get()->all();
+        // $products = DB::table("products")->select("name","price")->get()->all();
+        // $products = DB::table("products")->select("name", "price")->where("id", 17)->get()->all();
+        // $products = DB::table("products")->select("id", "name", "price")->where("id", ">=", 17)->where("id", "<=", 19)->get()->all();  //Và
+        // $products = DB::table("products")->select("id", "name", "price")->where("id", "<>", 17)->get()->all();  //Khác
+        // $products = DB::table("products")->select("id", "name", "price")->where("id", 17)->orWhere("id", 19)->get()->all();  //or
+        // $products = DB::table("products")->select("id", "name", "price")->orderBy("id", "desc")->get()->all();  //sắp xếp
+        // $products = DB::table("products")->select("id", "name", "price")->inRandomOrder()->get()->all();  //sắp xếp
+        // $products = DB::table("products")->select("id", "name", "price")->offset(2)->limit(3)->get()->all();  //
+
+        $products = DB::table("products")->select("products.name as product_name", "price", "categories.name as categories_name")->join("categories", "products.categories_id", "=", "categories.id")->get()->all();
+        dd($products);
+
+        // Sửa
+        // DB::table("categories")->where("id", 1)
+        //     ->update(["name" => "Vivo", "slug" => "vivo"]);
+
+        // Xóa
+        // DB::table("categories")->where("id", 5)
+        //     ->delete();
+
+Create seeder
+php artisan make:seeder "Name_Seeder"
+Chạy seeder
+php artisan db:seed

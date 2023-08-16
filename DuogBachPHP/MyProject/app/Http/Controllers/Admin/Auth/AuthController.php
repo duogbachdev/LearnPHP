@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -27,8 +28,9 @@ class AuthController extends Controller
         ];
 
         $request->validate($rules, $messages);
+        $users = DB::table("users")->where("email", $request->email)->where("password", $request->password)->get()->all();
 
-        if ($request->email == "admin@admin.com" && $request->password == "123456") {
+        if (count($users) > 0) {
             $request->session()->put("email", $request->email);
             return redirect("/admin");
         } else {
