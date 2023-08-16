@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             [
                 "fullname" => "DuogBachDev",
-                "password" => "123456",
+                "password" => bcrypt("123456"),
                 "email" => "admin@admin.com",
                 "phone" => "0123456789",
                 "address" => "Thái Bình",
@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             ],
             [
                 "fullname" => "Nguyễn Văn A",
-                "password" => "123456",
+                "password" => bcrypt("123456"),
                 "email" => "vanan@admin.com",
                 "phone" => "0123456789",
                 "address" => "Hà Nội",
@@ -34,7 +34,7 @@ class UserSeeder extends Seeder
             ],
             [
                 "fullname" => "Nguyễn Văn B",
-                "password" => "123456",
+                "password" => bcrypt("123456"),
                 "email" => "hoangbach@admin.com",
                 "phone" => "0123456789",
                 "address" => "Thái Nguyên",
@@ -42,7 +42,7 @@ class UserSeeder extends Seeder
             ],
             [
                 "fullname" => "Nguyễn Văn C",
-                "password" => "123456",
+                "password" => bcrypt("123456"),
                 "email" => "haiphong@admin.com",
                 "phone" => "0123456789",
                 "address" => "Hải Phong",
@@ -50,7 +50,7 @@ class UserSeeder extends Seeder
             ],
             [
                 "fullname" => "Nguyễn Văn D",
-                "password" => "123456",
+                "password" => bcrypt("123456"),
                 "email" => "lamnam@admin.com",
                 "phone" => "0123456789",
                 "address" => "Thanh Hóa",

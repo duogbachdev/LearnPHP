@@ -4,12 +4,37 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Test;
+use App\Models\User;
 
 class TestController extends Controller
 {
     //Dạng get data
     public function test(Request $request)
     {
+        // $test = new Test();
+        // $test->name = "New Name";
+        // $test->save();
+
+        // $test = Test::find(1);
+        // $test->name = "New Name";
+        // $test->save();
+
+        // $test = Test::find(1);
+        // $test->delete();
+
+        // $test = Test::all()->toArray();
+        // dd($test);
+
+        // $test = Test::where("id", ">=", 5)
+        //     ->where("id", "<=", 7)
+        //     ->get()
+        //     ->toArray();
+        // dd($test);
+
+        $user = User::all()->toArray();
+        dd($user);
+
         // $email = $request->query("email");
         // $password = $request->query("password");
         // dd($email . " " . $password);
@@ -59,8 +84,8 @@ class TestController extends Controller
         // $products = DB::table("products")->select("id", "name", "price")->inRandomOrder()->get()->all();  //sắp xếp
         // $products = DB::table("products")->select("id", "name", "price")->offset(2)->limit(3)->get()->all();  //
 
-        $products = DB::table("products")->select("products.name as product_name", "price", "categories.name as categories_name")->join("categories", "products.categories_id", "=", "categories.id")->get()->all();
-        dd($products);
+        // $products = DB::table("products")->select("products.name as product_name", "price", "categories.name as categories_name")->join("categories", "products.categories_id", "=", "categories.id")->get()->all();
+        // dd($products);
 
         // DB::table("products")->insert([
         //     [

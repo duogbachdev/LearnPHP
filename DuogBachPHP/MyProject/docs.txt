@@ -70,3 +70,10 @@ Create seeder
 php artisan make:seeder "Name_Seeder"
 Chạy seeder
 php artisan db:seed
+php artisan db:seed --class=UserSeeder
+
+Create Request
+php artisan make:request "Name_Request"
+
+Create Model kết hợp migration
+php artisan make:model "Name_Model" -m

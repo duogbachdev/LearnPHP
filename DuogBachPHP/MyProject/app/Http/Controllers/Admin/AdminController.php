@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -13,9 +14,11 @@ class AdminController extends Controller
         return view('backend/index');
     }
 
-    public function logout(Request $request)
+    // public function logout(Request $request)
+    public function logout()
     {
-        $request->session()->forget("email");
+        // $request->session()->forget("email");
+        Auth::logout();
         return redirect("/login");
     }
 }
