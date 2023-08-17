@@ -6,12 +6,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Test;
 use App\Models\User;
+use App\Models\Detail;
 
 class TestController extends Controller
 {
     //Dạng get data
     public function test(Request $request)
     {
+        $user = Detail::find(2)
+            // ->detail
+            ->user
+            ->toArray();
+        dd($user);
+
         // $test = new Test();
         // $test->name = "New Name";
         // $test->save();
@@ -32,8 +39,8 @@ class TestController extends Controller
         //     ->toArray();
         // dd($test);
 
-        $user = User::all()->toArray();
-        dd($user);
+        // $user = User::all()->toArray();
+        // dd($user);
 
         // $email = $request->query("email");
         // $password = $request->query("password");

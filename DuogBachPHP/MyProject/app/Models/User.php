@@ -25,4 +25,9 @@ class User extends Authenticatable
         "password",
         "level"
     ];
+
+    public function detail()
+    {
+        return $this->hasOne(Detail::class, "user_id", "id");
+    }
 }

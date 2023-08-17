@@ -77,3 +77,6 @@ php artisan make:request "Name_Request"
 
 Create Model kết hợp migration
 php artisan make:model "Name_Model" -m
+
+Tùy biến phân trang bằng Eloquent
+php artisan vendor:publish --tag=laravel-pagination

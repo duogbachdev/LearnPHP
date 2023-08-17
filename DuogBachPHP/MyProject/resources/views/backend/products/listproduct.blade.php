@@ -66,7 +66,7 @@
                                         <td>
                                             <a class="btn btn-{{$product->state ? 'success' : 'danger'}}" href="#" role="button">{{$product->state ? "Còn Hàng" : "Hết Hàng"}}</a>
                                         </td>
-                                        <td>{{$product->category_name}}</td>
+                                        <td>{{$product->category->name}}</td>
                                         <td>
                                             <a href="/admin/product/edit/" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
                                             <a href="/admin/product/del/" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>
@@ -75,9 +75,10 @@
                                     @endforeach
                                 </tbody>
                             </table>
+                            <!-- Ky thuat Phan trang -->
                             <div align='right'>
                                 <ul class="pagination">
-                                    DuogBachDev
+                                    {{$products->links("pagination::bootstrap-4")}}
                                 </ul>
                             </div>
                         </div>
