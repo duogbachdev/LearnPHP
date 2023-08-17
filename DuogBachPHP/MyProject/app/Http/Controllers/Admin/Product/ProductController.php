@@ -3,9 +3,12 @@
 namespace App\Http\Controllers\Admin\Product;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AddProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Category;
+use App\Slug\Slug;
 
 class ProductController extends Controller
 {
@@ -27,11 +30,42 @@ class ProductController extends Controller
     }
     public function create()
     {
-        return view('backend/products/addproduct');
+        $categories = Category::all()
+            ->toArray();
+        return view('backend/products/addproduct', ["categories" => $categories]);
     }
-    public function store()
+    public function store(AddProductRequest $request)
     {
-        return view('backend/products/addproduct');
+        // dd(Slug::getSlug($request->name));
+        if ($request->hasFile("image")) {
+            $slug = Slug::getSlug($request->name);
+            $file = $request->image;
+
+            // Get the file extension
+            $fileExtension = $file->getClientOriginalExtension();
+
+            // Generate the filename using the slug and extension
+            $filename = $slug . "." . $fileExtension;
+
+            // Move the uploaded file to the "uploads" directory with the generated filename
+            $file->move("uploads", $filename);
+
+            $product = new Product();
+            $product->name = $request->name;
+            $product->code = $request->code;
+            $product->price = $request->price;
+            $product->categories_id = $request->categories_id;
+            $product->state = $request->state;
+            $product->featured = $request->featured;
+            $product->info = $request->info;
+            $product->describer = $request->describer;
+            $product->slug = $slug;
+            $product->image = $filename;
+            $product->save();
+
+            return redirect("/admin/product")->with("alert", "Đã thêm thành công");
+        }
+        // return view('backend/products/addproduct');
     }
     public function edit()
     {

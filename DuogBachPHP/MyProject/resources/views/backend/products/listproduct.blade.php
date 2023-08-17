@@ -28,11 +28,13 @@
                 <div class="panel-body">
                     <div class="bootstrap-table">
                         <div class="table-responsive">
+                            @if(session("alert"))
                             <div class="alert bg-success" role="alert" id="close-mess">
                                 <svg class="glyph stroked checkmark">
                                     <use xlink:href="#stroked-checkmark"></use>
-                                </svg>Đã Thêm Thành Công<a href="#" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+                                </svg>{{session("alert")}}<a href="#" class="pull-right"><span class="glyphicon glyphicon-remove"></span></a>
                             </div>
+                            @endif
                             <a href="/admin/product/create" class="btn btn-primary">Thêm sản phẩm</a>
                             <table class="table table-bordered" style="margin-top:20px;">
 
@@ -53,7 +55,7 @@
                                         <td>{{$product->id}}</td>
                                         <td>
                                             <div class="row">
-                                                <div class="col-md-3"><img src="img/{{$product->image}}" alt="Áo đẹp" width="100px" class="thumbnail"></div>
+                                                <div class="col-md-3"><img src="../uploads/{{$product->image}}" alt="Áo đẹp" width="100px" class="thumbnail"></div>
                                                 <div class="col-md-9">
                                                     <p><strong>Mã sản phẩm : {{$product->code}}</strong></p>
                                                     <p>Tên sản phẩm : {{$product->product_name}}</p>

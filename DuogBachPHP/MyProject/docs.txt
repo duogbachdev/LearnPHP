@@ -80,3 +80,11 @@ php artisan make:model "Name_Model" -m
 
 Tùy biến phân trang bằng Eloquent
 php artisan vendor:publish --tag=laravel-pagination
+
+
+Create Helpers
+B1 : tao thu muc, tao file
+B2 : composer dump-autoload
+
+Định nghĩa provider
+php artisan make:provider "NameServiceProvider"

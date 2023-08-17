@@ -7,17 +7,38 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Test;
 use App\Models\User;
 use App\Models\Detail;
+use App\Models\Category;
+use App\Duogbach\Duogbach;
 
 class TestController extends Controller
 {
     //Dạng get data
     public function test(Request $request)
     {
-        $user = Detail::find(2)
-            // ->detail
-            ->user
-            ->toArray();
-        dd($user);
+        $duogbachInstance = new \App\Duogbach\Duogbach();
+        $data = $duogbachInstance->getDataDuogbach();
+        dd($data);
+
+        // $categories = Category::all()->toArray();
+
+        // function showCategories($categories, $parent, $char)
+        // {
+        //     foreach ($categories as $category) {
+        //         if ($category["parent"] == $parent) {
+        //             echo $char . $category["name"] . "<br/>";
+        //             $new_parent = $category["id"];
+        //             showCategories($categories, $new_parent, $char . "|--- ");
+        //         }
+        //     }
+        // }
+        // showCategories($categories, 0, "");
+        // dd($categories);
+        // return view("test");
+        // $user = Detail::find(2)
+        //     // ->detail
+        //     ->user
+        //     ->toArray();
+        // dd($user);
 
         // $test = new Test();
         // $test->name = "New Name";
