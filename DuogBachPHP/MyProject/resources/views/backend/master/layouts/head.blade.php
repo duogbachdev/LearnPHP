@@ -13,6 +13,9 @@
     <!--Icons-->
     <script src="js/lumino.glyphs.js"></script>
     <link rel="stylesheet" href="Awesome/css/all.css">
+
+    <!-- Chekeditor -->
+    <script src="../ckeditor/ckeditor.js"></script>
 </head>
 
 <body>

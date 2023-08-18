@@ -12,56 +12,64 @@
     <div class="row">
         <div class="col-xs-6 col-md-12 col-lg-12">
             <div class="panel panel-primary">
-                <form method="post" enctype="multipart/form-data">
+                <form action="/admin/product/update/{{$product['id']}}" method="post" enctype="multipart/form-data">
                     <div class="panel-heading">Sửa sản phẩm</div>
                     <div class="panel-body">
                         <div class="row" style="margin-bottom:40px">
                             <div class="col-md-8">
+                                @if($errors->any())
+                                @foreach($errors->all() as $error)
+                                <div class="alert alert-danger">{{$error}}</div>
+                                @endforeach
+                                @endif
                                 <div class="form-group">
                                     <label>Danh mục</label>
-                                    <select name="category" class="form-control">
-                                        <option value="Nam">Nam</option>
-                                        <option value="Nữ">Nữ</option>
+                                    <select name="categories_id" class="form-control">
+                                        {{showCategories($categories,0,"",$product['categories_id'])}}
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Mã sản phẩm</label>
-                                    <input type="text" name="code" class="form-control" value="SP01">
+                                    <input type="text" name="code" class="form-control" value="{{$product['code']}}">
                                 </div>
                                 <div class="form-group">
                                     <label>Tên sản phẩm</label>
-                                    <input type="text" name="name" class="form-control" value="DuogBachDev">
+                                    <input type="text" name="name" class="form-control" value="{{$product['name']}}">
                                 </div>
                                 <div class="form-group">
                                     <label>Giá sản phẩm (Giá chung)</label>
-                                    <input type="number" name="price" class="form-control" value="500000">
+                                    <input type="number" name="price" class="form-control" value="{{$product['price']}}">
                                 </div>
                                 <div class="form-group">
                                     <label>Sản phẩm có nổi bật</label>
                                     <select name="featured" class="form-control">
-                                        <option selected value="0">Không</option>
-                                        <option selected value="1">Có</option>
+                                        <option @if($product['featured']==0) {{"selected"}} @endif value="0">Không</option>
+                                        <option @if($product['featured']==1) {{"selected"}} @endif value="1">Có</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label>Trạng thái</label>
                                     <select name="state" class="form-control">
-                                        <option selected value="1">Còn hàng</option>
-                                        <option selected value="0">Hết hàng</option>
+                                        <option @if($product['state']==1) {{"selected"}} @endif value="1">Còn hàng</option>
+                                        <option @if($product['state']==0) {{"selected"}} @endif value="0">Hết hàng</option>
+
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label>Ảnh sản phẩm</label>
-                                    <input id="img" type="file" name="img" class="form-control hidden" onchange="changeImg(this)">
-                                    <img id="avatar" class="thumbnail" width="100%" height="100%" src="img/no-img.jpg">
+                                    <input id="img" type="file" name="image" class="form-control hidden" onchange="changeImg(this)">
+                                    <img id="avatar" class="thumbnail" width="100%" height="100%" src="../uploads/{{$product['image']}}">
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Thông tin</label>
-                                    <textarea name="info" style="width: 100%;height: 100px;">DuogBachDev</textarea>
+                                    <textarea id="info" name="info" style="width: 100%;height: 100px;">{{$product['info']}}</textarea>
+                                    <script>
+                                        CKEDITOR.replace("info")
+                                    </script>
                                 </div>
                             </div>
                         </div>
@@ -69,13 +77,17 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label>Miêu tả</label>
-                                    <textarea id="editor" name="describe" style="width: 100%;height: 100px;">DuogBachDev</textarea>
+                                    <textarea id="editor" name="describer" style="width: 100%;height: 100px;">{{$product['describer']}}</textarea>
+                                    <script>
+                                        CKEDITOR.replace("editor")
+                                    </script>
                                 </div>
                                 <button class="btn btn-success" name="add-product" type="submit">Sửa sản
                                     phẩm</button>
                                 <button class="btn btn-danger" type="reset">Huỷ bỏ</button>
                             </div>
                         </div>
+                        {{csrf_field()}}
                         <div class="clearfix"></div>
                     </div>
                 </form>
@@ -88,19 +100,25 @@
 </div>
 
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 <script>
     function changeImg(input) {
-        //Nếu như tồn thuộc tính file, đồng nghĩa người dùng đã chọn file mới
+        // If the input has selected files (images)
         if (input.files && input.files[0]) {
             var reader = new FileReader();
-            //Sự kiện file đã được load vào website
+
+            // Event handler for when the file has been loaded
             reader.onload = function(e) {
-                //Thay đổi đường dẫn ảnh
+                // Update the source of the image element
                 $('#avatar').attr('src', e.target.result);
             }
+
+            // Read the selected file as a data URL
             reader.readAsDataURL(input.files[0]);
         }
     }
+
     $(document).ready(function() {
         $('#avatar').click(function() {
             $('#img').click();
@@ -108,8 +126,8 @@
     });
 </script>
 
+
 <!-- javascript -->
-<script src="js/jquery-1.11.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/chart.min.js"></script>
 

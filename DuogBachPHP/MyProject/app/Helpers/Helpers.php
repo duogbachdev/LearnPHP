@@ -7,13 +7,17 @@ if (!function_exists('duogbachdev')) {
 }
 
 if (!function_exists('showCategories')) {
-    function showCategories($categories, $parent, $char)
+    function showCategories($categories, $parent, $char, $parent_id_child)
     {
         foreach ($categories as $category) {
             if ($category["parent"] == $parent) {
-                echo "<option value='" . $category["id"] . "' selected>" . $char . $category["name"] . "</option>";
+                if ($category["id"] == $parent_id_child) {
+                    echo "<option value='" . $category["id"] . "' selected>" . $char . $category["name"] . "</option>";
+                } else {
+                    echo "<option value='" . $category["id"] . "' >" . $char . $category["name"] . "</option>";
+                }
                 $new_parent = $category["id"];
-                showCategories($categories, $new_parent, $char . "--- ");
+                showCategories($categories, $new_parent, $char . "--- ", $parent_id_child);
             }
         }
     }

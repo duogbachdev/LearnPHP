@@ -53,17 +53,15 @@ Route::get('/login', [AuthController::class, "getLogin"])->middleware("checklogi
 Route::post('/login', [AuthController::class, "postLogin"])->middleware("checklogin");
 
 Route::group(['prefix' => '/admin', "middleware" => "checkadmin"], function () {
-    Route::get('/logout', [AdminController::class,"logout"]);
+    Route::get('/logout', [AdminController::class, "logout"]);
     Route::get('/', [AdminController::class, "index"]);
     Route::group(['prefix' => '/product'], function () {
         Route::get('/', [ProductController::class, "index"]);
         Route::get('/create', [ProductController::class, "create"]);
         Route::post('/store', [ProductController::class, "store"]);
-        Route::get('/edit', [ProductController::class, "edit"]);
-        Route::post('/update', [ProductController::class, "update"]);
-        Route::get('/delete', function () {
-            return 'delete';
-        });
+        Route::get('/edit/{id}', [ProductController::class, "edit"]);
+        Route::post('/update/{id}', [ProductController::class, "update"]);
+        Route::get('/delete/{id}', [ProductController::class, "delete"]);
     });
     Route::group(['prefix' => '/category'], function () {
         Route::get('/', [CategoryController::class, "index"]);

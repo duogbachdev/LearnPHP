@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Category;
 use App\Slug\Slug;
+use App\Http\Requests\EditProductRequest;
 
 class ProductController extends Controller
 {
@@ -67,12 +68,57 @@ class ProductController extends Controller
         }
         // return view('backend/products/addproduct');
     }
-    public function edit()
+    public function edit(Request $request)
     {
-        return view('backend/products/editproduct');
+        $id = $request->id;
+        $product = Product::find($id)->toArray();
+        $categories = Category::all();
+        // dd($product);
+        return view('backend/products/editproduct', ["product" => $product], ["categories" => $categories]);
     }
-    public function update()
+    public function update(EditProductRequest $request)
     {
-        return view('backend/products/editproduct');
+        $id = $request->id;
+        $slug = Slug::getSlug($request->name);
+        $product = Product::find($id);
+
+        // Update the properties of the existing product instance
+        $product->name = $request->name;
+        $product->code = $request->code;
+        $product->price = $request->price;
+        $product->categories_id = $request->categories_id;
+        $product->state = $request->state;
+        $product->featured = $request->featured;
+        $product->info = $request->info;
+        $product->describer = $request->describer;
+        $product->slug = $slug;
+
+        if ($request->hasFile("image")) {
+            $file = $request->image;
+
+            // Get the file extension
+            $fileExtension = $file->getClientOriginalExtension();
+
+            // Generate the filename using the slug and extension
+            $filename = $slug . "." . $fileExtension;
+
+            // Move the uploaded file to the "uploads" directory with the generated filename
+            $file->move("uploads", $filename);
+            $product->image = $filename;
+        }
+
+        // Save the changes to the existing product instance
+        $product->save();
+
+        return redirect("/admin/product")->with("alert", "Đã sửa thành công");
+        // return view('backend/products/editproduct');
+    }
+
+    public function delete(Request $request)
+    {
+        $id = $request->id;
+        $product = Product::find($id);
+        $product->delete();
+        return redirect("/admin/product")->with("alert", "Đã xóa thành công");
     }
 }
