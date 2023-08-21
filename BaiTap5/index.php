@@ -13,9 +13,9 @@
     <div class="container">
         <h1 class="text-uppercase text-center my-5">List Student</h1>
         <p class="mb-5"><a class="text-uppercase fw-bold bg-primary  text-decoration-none text-white px-3 py-2 rounded-2 " href="./addnew.php">Add New</a></p>
-        <table class="table table-hover table-bordered border border-primary">
-            <thead>
-                <tr class="text-center text-uppercase ">
+        <table class="table table-warning table-bordered border border-black">
+            <thead class="table-primary  table-bordered border border-black">
+                <tr class="text-center text-uppercase">
                     <th>Student Code</th>
                     <th>FullName</th>
                     <th>Date of birth</th>
@@ -49,8 +49,8 @@
 
                         echo '<td>
                             <div class="d-flex justify-content-around">
-                                <a href="./edit.php?id=' . $row['id'] . '" class="btn btn-success">Sửa</a>
-                                <a href="./delete.php?id=' . $row['id'] . '" class="btn btn-danger">Xóa</a>
+                                <a href="./edit.php?id=' . $row['id'] . '" class="btn btn-secondary text-white text-uppercase ">Edit</a>
+                                <a href="./delete.php?id=' . $row['id'] . '" class="btn btn-danger text-uppercase">Delete</a>
                             </div>
                         </td>';
                         echo '</tr>';

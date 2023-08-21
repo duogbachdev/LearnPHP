@@ -86,7 +86,7 @@ $conn->close();
                 </select>
             </div>
             <button type="submit" class="btn btn-outline-primary">Submit</button>
-            <button type="submit" class="btn btn-outline-success ">Reset</button>
+            <button type="reset" class="btn btn-outline-success ">Reset</button>
         </form>
     </div>
 </body>

@@ -11,10 +11,10 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         header("Location: index.php"); // Điều hướng đến trang danh sách sinh viên
         exit();
     } else {
-        echo "Lỗi khi xóa học viên: " . $conn->error;
+        echo "Error deleting student " . $studentId;
     }
 } else {
-    echo "ID học viên không hợp lệ.";
+    echo "ID student false";
 }
 
 $conn->close();
