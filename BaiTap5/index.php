@@ -11,6 +11,13 @@
 
 <body>
     <div class="container">
+        <nav class="navbar bg-primary-subtle px-5 ">
+            <a class="navbar-brand" href="./index.php">DuogBachDev</a>
+            <form class="d-flex" method="get">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </nav>
         <h1 class="text-uppercase text-center my-5">List Student</h1>
         <p class="mb-5"><a class="text-uppercase fw-bold bg-primary  text-decoration-none text-white px-3 py-2 rounded-2 " href="./addnew.php">Add New</a></p>
         <table class="table table-warning table-bordered border border-black">
@@ -31,7 +38,13 @@
                 include 'db_connect.php';
 
                 // Thực hiện truy vấn để lấy dữ liệu từ cơ sở dữ liệu
-                $sql = "SELECT * FROM tbl_users";
+                $searchQuery = '';
+                if (isset($_GET['search'])) {
+                    $searchQuery = $_GET['search'];
+                    $sql = "SELECT * FROM tbl_users WHERE namecode LIKE '%$searchQuery%' OR fullname LIKE '%$searchQuery%'";
+                } else {
+                    $sql = "SELECT * FROM tbl_users";
+                }
                 $result = $conn->query($sql);
 
                 if ($result->num_rows > 0) {
