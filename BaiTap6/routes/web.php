@@ -22,9 +22,7 @@ Route::group(['prefix' => '/user'], function () {
     Route::get('/', [UserController::class, "index"]);
     Route::get('/create', [UserController::class, "create"]);
     Route::post('/store', [UserController::class, "store"]);
-    Route::get('/edit', [UserController::class, "edit"]);
-    Route::post('/update', [UserController::class, "update"]);
-    Route::get('/delete', function () {
-        return 'delete';
-    });
+    Route::get('/edit/{id}', [UserController::class, "edit"]);
+    Route::post('/update/{id}', [UserController::class, "update"]);
+    Route::get('/delete/{id}', [UserController::class, "delete"]);
 });
