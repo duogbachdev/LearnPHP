@@ -19,7 +19,17 @@
             </form>
         </nav>
         <h1 class="text-uppercase text-center my-5">List Student</h1>
-        <p class="mb-5"><a class="text-uppercase fw-bold bg-primary  text-decoration-none text-white px-3 py-2 rounded-2 " href="./addnew.php">Add New</a></p>
+        <p class="mb-5"><a class="text-uppercase fw-bold bg-primary  text-decoration-none text-white px-3 py-2 rounded-2 " href="/user/create">Add New</a></p>
+        @if(session("alert"))
+        <div class="alert alert-success d-flex align-items-center" role="alert">
+            <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:">
+                <use xlink:href="#check-circle-fill" />
+            </svg>
+            <div>
+                {{session("alert")}}
+            </div>
+        </div>
+        @endif
         <table class="table table-warning table-bordered border border-black">
             <thead class="table-primary  table-bordered border border-black">
                 <tr class="text-center text-uppercase">
@@ -35,14 +45,14 @@
             </thead>
             <tbody>
                 @foreach($users as $user)
-                <tr>
+                <tr class="text-center align-middle">
                     <td> {{$user->namecode}} </td>
                     <td> {{$user->fullname}} </td>
 
                     <!-- Chuyển đổi định dạng ngày tháng -->
                     <td> {{ date("d/m/Y", strtotime($user->datebirth)) }} </td>
                     <td> {{$user->address}} </td>
-                    <td> {{$user->namecode == 1 ? "Male" : "Female" }}</td>
+                    <td> {{$user->gender == 1 ? "Nam" : "Nữ" }}</td>
                     <td> {{$user->class}} </td>
                     <td>
 
@@ -60,6 +70,13 @@
 
             </tbody>
         </table>
+
+        <!-- Ky thuat Phan trang -->
+        <div class="d-flex justify-content-end">
+            <ul class="pagination">
+                {{$users->links("pagination::bootstrap-4")}}
+            </ul>
+        </div>
     </div>
 </body>
 
