@@ -11,8 +11,8 @@
 
 <body>
     <div class="container">
-        <nav class="navbar bg-primary-subtle px-5 ">
-            <a class="navbar-brand" href="./index.php">DuogBachDev</a>
+        <nav class="navbar bg-primary-subtle px-5">
+            <a class="navbar-brand" href="/user">DuogBachDev</a>
             <form class="d-flex" method="get">
                 <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search">
                 <button class="btn btn-outline-success" type="submit">Search</button>
@@ -21,13 +21,9 @@
         <h1 class="text-uppercase text-center my-5">List Student</h1>
         <p class="mb-5"><a class="text-uppercase fw-bold bg-primary  text-decoration-none text-white px-3 py-2 rounded-2 " href="/user/create">Add New</a></p>
         @if(session("alert"))
-        <div class="alert alert-success d-flex align-items-center" role="alert">
-            <svg class="bi flex-shrink-0 me-2" role="img" aria-label="Success:">
-                <use xlink:href="#check-circle-fill" />
-            </svg>
-            <div>
-                {{session("alert")}}
-            </div>
+        <div class="alert alert-success  alert-dismissible fade show" role="alert">
+            {{session("alert")}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
         @endif
         <table class="table table-warning table-bordered border border-black">
@@ -44,6 +40,7 @@
                 </tr>
             </thead>
             <tbody>
+                @if(count($users) > 0)
                 @foreach($users as $user)
                 <tr class="text-center align-middle">
                     <td> {{$user->namecode}} </td>
@@ -61,13 +58,17 @@
 
                     <td>
                         <div class="d-flex justify-content-around">
-                            <a href="./edit.php?id=' . $row['id'] . '" class="btn btn-secondary text-white text-uppercase ">Edit</a>
-                            <a href="./delete.php?id=' . $row['id'] . '" class="btn btn-danger text-uppercase">Delete</a>
+                            <a href="/user/edit/{{$user->id}}" class="btn btn-secondary text-white text-uppercase ">Edit</a>
+                            <a href="/user/delete/{{$user->id}}" class="btn btn-danger text-uppercase">Delete</a>
                         </div>
                     </td>
                 </tr>
                 @endforeach
-
+                @else
+                <tr>
+                    <td colspan="8" class="text-center">No records found</td>
+                </tr>
+                @endif
             </tbody>
         </table>
 
@@ -78,6 +79,13 @@
             </ul>
         </div>
     </div>
+
+    <script>
+        // Hàm này sẽ tự động gửi yêu cầu tìm kiếm khi trang web được nạp
+        window.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('searchForm').submit();
+        });
+    </script>
 </body>
 
 </html>

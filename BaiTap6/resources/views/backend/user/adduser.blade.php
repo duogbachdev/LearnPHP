@@ -60,7 +60,7 @@
             </div>
             <button type="submit" class="btn btn-outline-primary">Submit</button>
             <button type="reset" class="btn btn-outline-success ">Reset</button>
-            <div class="clearfix"></div>
+            <a href="/user" class="btn btn-outline-secondary">Cancel</a>
             {{csrf_field()}}
         </form>
     </div>
