@@ -1,0 +1,3 @@
+B1 : Create database : 72DCTT21
+B2 : php artisan migrate
+B3 : php artisan db:seed
